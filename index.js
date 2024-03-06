@@ -4,6 +4,8 @@ import express from "express";
 import userRoutes from "./routes/user.routes.js";
 import sponsorRoutes from "./routes/sponsor.routes.js";
 import applicationRoutes from "./routes/application.routes.js"
+import adminroutes from "./routes/admin.routes.js"
+
 import cors from "cors";
 
 dotenv.config();
@@ -28,6 +30,7 @@ app.use(express.static("public"));
 app.use("/api/users",userRoutes)
 app.use('/api/sponsor',sponsorRoutes)
 app.use('/api/application',applicationRoutes)
+app.use('/api/admin',adminroutes)
 
 app.listen(PORT, () => {
     console.log("Server running on port 5000")
