@@ -11,7 +11,7 @@ export const authentication = async (req, res, next) => {
         message: "No token, authorization denied",
       });
     }
-    // const token = req.headers["authorization"].split(" ")[1];
+    
 
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
       if (err) {
@@ -20,7 +20,7 @@ export const authentication = async (req, res, next) => {
           message: "Token is not valid",
         });
       }
-      req.userID = user.id;
+      req.user = user;
       next();
     });
   } catch (error) {
