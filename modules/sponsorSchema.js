@@ -5,10 +5,7 @@ const sponsorSchema=new mongoose.Schema({
         type: String,
         required: true
       },
-      name: {
-        type: String,
-        required: true
-      },
+      
       industry: {
         type: String,
         required: true
@@ -17,10 +14,7 @@ const sponsorSchema=new mongoose.Schema({
         type: String,
         required: true
       },
-      contact_person: {
-        type: String,
-        required: true
-      },
+      
       contact_email: {
         type: String,
         required: true
@@ -29,9 +23,22 @@ const sponsorSchema=new mongoose.Schema({
         type: String,
         required: true
       },
+      budget:{
+        type: String,
+        required: true
+      },
+      location:{
+        type: String,
+        required: true
+      },
+      video:{
+        type: String,
+      },
+      photo:{
+        type: String,
+      }
     },{timestamps:true});
 
     
-    const sponsorModel= mongoose.model("Sponsor",sponsorSchema);
-
-    module.exports = sponsorSchema;
+const sponsorModel= mongoose.model("Sponsor",sponsorSchema);
+export default sponsorModel;
