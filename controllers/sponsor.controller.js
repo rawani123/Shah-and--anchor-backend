@@ -1,4 +1,4 @@
-import sponsorModel from "../modules/sponsorSchema.js";
+import sponsorModel from "../modules/sponsor.model.js";
 import userModel from "../modules/user.model.js";
 import uploadOnCloudinary from "../utils/cloudnary.js";
 
