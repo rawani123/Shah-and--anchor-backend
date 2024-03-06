@@ -134,3 +134,12 @@ export const getSponsorsByIndustry = async (req, res) => {
   }
 };
 
+
+ export const getAllUnSponsors =async()=>{
+  try {
+    const sponsor = await sponsorModel.find({status:"pending"});
+    return res.status(200).send({ message: "All sponsors", sponsor, success: true });
+  } catch (error) {
+    return res.status(500).send({ message: error.message, success: false });
+  }
+ }
