@@ -76,7 +76,7 @@ export const sponsorController = async (req, res) => {
 
 export const getAllSponsors = async (req, res) => {
   try {
-    const sponsor = await sponsorModel.find({});
+    const sponsor = await sponsorModel.find({status:"approved"});
     return res
       .status(200)
       .send({ message: "All sponsors", sponsor, success: true });
