@@ -5,7 +5,7 @@ import { upload } from "../middleware/multer.middleware.js";
 
 const router = express.Router();
 
-router.post('/apply',upload.single('photo'),applicationController)
+router.post('/apply', applicationController)
 router.post('/approve', approveApplication)
 
 export default router;
