@@ -11,7 +11,7 @@ export const sponsorController = async (req, res) => {
       contact_phone,
       budget,
       location,
-      sponsor_id
+      sponsor_id,
     } = req.body;
     if (
       !industry ||
@@ -41,15 +41,6 @@ export const sponsorController = async (req, res) => {
     //     return res.status(400).send({message:"Error uploading video"});
     // }
 
-    const user = await userModel.findById({ _id: sponsor_id });
-
-    const admin = await userModel.findOne({isAdmin:true})
-    admin.notifications.push({
-      message:`A new sponsor has been applied ${user.userName}`
-    })
-
-    await admin.save();
-
     const sponsor = await sponsorModel.create({
       industry,
       description,
@@ -61,6 +52,20 @@ export const sponsorController = async (req, res) => {
       //   video: videoBuffer,
       sponsor_id,
     });
+
+    const user = await userModel.findById({ _id: sponsor_id });
+
+    const admin = await userModel.findOne({ isAdmin: true });
+    admin.notifications.push({
+      type: "apply-doctor-request",
+      message: `${user.userName} has applied for doctor role`,
+      data: {
+        sponsorId: sponsor._id,
+        name: `${user.userName} `,
+      },
+    });
+
+    await admin.save();
     return res
       .status(201)
       .send({ message: "Sponsor created successfully", sponsor });

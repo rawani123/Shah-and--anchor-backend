@@ -21,15 +21,15 @@ const userSchema = new mongoose.Schema({
         type:Boolean,
         default:false,
     },
-    status:{
-        type:String,
-        default:"pending",
-    },
     notifications:{
         type:Array,
         default:[],
     },
     seenNotifications:{
+        type:Array,
+        default:[],
+    },
+    applications:{
         type:Array,
         default:[],
     },

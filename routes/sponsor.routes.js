@@ -5,7 +5,7 @@ import {upload } from "../middleware/multer.middleware.js";
 // import formidable from "express-formidable";
 const router = express.Router();
 
-router.post("/become-sponsor",sponsorController)
+router.post("/become-sponsor",authentication,sponsorController)
 router.post('/getAllSponsors',authentication,getAllSponsors)
 
 router.post('/getSponsor/:id',authentication,getSponsor)
