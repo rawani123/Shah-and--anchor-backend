@@ -19,4 +19,6 @@ router.post('/deleteSponsor/:id',authentication,deleteSponsor)
 
 router.get('/getSponsorbyindustry/:industry', getSponsorsByIndustry);
 
+router.post('/approve-application',)
+
 export default router;
