@@ -63,9 +63,24 @@ export const getAllUser = async (req, res) => {
 
 export const getUser = async (req, res) => {
     try {
-        const {id}=req.params;
-        const user = await userModel.findById({_id:id});
-        return res.status(200).send({ message: "User", user,success:true });
+        const id = req.user.id;
+        const user = await userModel.findById({_id:id}).select("-password");
+        if(!user){
+          return res.status(400).send({
+            success:false,
+            message:"User Doesn't exist"
+          })
+        }
+        return res.status(200).send({data:{
+          username: user.userName,
+          userID:user._id,
+          email:user.email,
+          name:user.name,
+          isAdmin: user.isAdmin,
+          isDoctor: user.isSponsor,
+          notification: user.notifications,
+          seennotification :user.seenNotifications
+        }, message: "User",success:true });
     } catch (error) {
         return res.status(500).send({ message: error.message,success:false });
     }

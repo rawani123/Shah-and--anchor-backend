@@ -12,7 +12,7 @@ router.post("/login", loginController)
 
 router.post('/getAllUser',authentication,admin,getAllUser)
 
-router.post('/getUser/:id',authentication,admin,getUser)
+router.post('/getUser',authentication,getUser)
 
 router.post('/deleteUser/:id',authentication,admin,deleteUser)
 
