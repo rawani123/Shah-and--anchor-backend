@@ -15,8 +15,11 @@ const applicationSchema = new mongoose.Schema({
     },
     photo: {
         type: String,
-
     },
+    link:{
+        type:String,
+    }
+    
 }, { timestamps: true });
 
 const applicationModel = mongoose.model("Application", applicationSchema);

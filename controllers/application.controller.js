@@ -3,9 +3,9 @@ import uploadOnCloudinary from "../utils/cloudnary.js";
 
 export const applicationController = async (req, res) => {
   try {
-    const { reason, location, money } = req.body;
-    console.log("me he hu",reason);
-    if (!reason || !location || !money) {
+    const { reason, location, money, link } = req.body;
+    console.log("me he hu", reason);
+    if (!reason || !location || !money || !link) {
       return res.status(400).send({ message: "Please fill in all fields" });
     }
 
@@ -26,6 +26,7 @@ export const applicationController = async (req, res) => {
       reason,
       location,
       money,
+      link,
       // photo: uploadedVideo?.url,
     });
     await newApplication.save();
