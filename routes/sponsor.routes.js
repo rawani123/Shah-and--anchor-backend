@@ -5,7 +5,7 @@ import {upload } from "../middleware/multer.middleware.js";
 
 const router = express.Router();
 
-router.post("/become-sponsor",sponsorController)
+router.post("/become-sponsor",upload.single("video"),sponsorController)
 router.post('/getAllSponsors',authentication,getAllSponsors)
 
 router.post('/getSponsor/:id',authentication,getSponsor)
