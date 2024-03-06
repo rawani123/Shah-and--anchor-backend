@@ -27,6 +27,7 @@ app.use(express.static("public"));
 
 app.use("/api/users",userRoutes)
 app.use('/api/sponsor',sponsorRoutes)
+app.use('/api/application',applicationRoutes)
 
 app.listen(PORT, () => {
     console.log("Server running on port 5000")
