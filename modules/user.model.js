@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
         type:Boolean,
         default:false,
     },
+    status:{
+        type:String,
+        default:"pending",
+    },
     notifications:{
         type:Array,
         default:[],

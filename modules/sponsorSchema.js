@@ -30,12 +30,6 @@ const sponsorSchema=new mongoose.Schema({
       location:{
         type: String,
         required: true
-      },
-      video:{
-        type: String,
-      },
-      photo:{
-        type: String,
       }
     },{timestamps:true});
 
