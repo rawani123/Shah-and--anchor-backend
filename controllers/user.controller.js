@@ -1,6 +1,7 @@
 import userModel from "../modules/user.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"; 
+import sponsorModel from "../modules/sponsorSchema.js";
 export const registerController = async (req, res) => {
   try {
     const { userName, email, password } = req.body;
@@ -59,4 +60,11 @@ export const getAllUser = async (req, res) => {
     } catch (error) {
         return res.status(500).send({ message: error.message,success:false });
     }
+}
+
+export const updateSponsor= async(req,res) =>{
+  try{
+    const {id}= req.params;
+    const sponsor = await sponsorModel
+  }
 }
