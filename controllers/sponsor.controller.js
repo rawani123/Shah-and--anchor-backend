@@ -122,3 +122,14 @@ export const deleteSponsor = async (req, res) => {
     return res.status(500).send({ message: error.message, success: false });
   }
 };
+
+export const getSponsorsByIndustry = async (req, res) => {
+  try {
+    const { industry } = req.params;
+    const sponsors = await sponsorModel.find({ industry });
+    return res.status(200).send({ message: `Sponsors in ${industry}`, sponsors, success: true });
+  } catch (error) {
+    return res.status(500).send({ message: error.message, success: false });
+  }
+};
+
