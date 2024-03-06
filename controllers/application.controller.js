@@ -1,5 +1,6 @@
 import applicationModel from "../modules/application.model.js";
 import sponsorModel from "../modules/sponsor.model.js";
+import userModel from "../modules/user.model.js";
 import uploadOnCloudinary from "../utils/cloudnary.js";
 
 export const applicationController = async (req, res) => {
@@ -22,7 +23,8 @@ export const applicationController = async (req, res) => {
     await newApplication.save();
 
     const sponsor = await sponsorModel.findById({ _id: sponsorId });
-    const sponsorUser = await userModel.findById({ _id: sponsor.userId });
+    const sponsorUser = await userModel
+    .findById({ _id: sponsor.userId });
     sponsorUser.notifications.push({
       type: "application",
       user: userId,
