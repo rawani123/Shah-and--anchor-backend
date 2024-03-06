@@ -60,3 +60,35 @@ export const getAllUser = async (req, res) => {
         return res.status(500).send({ message: error.message,success:false });
     }
 }
+
+export const getUser = async (req, res) => {
+    try {
+        const {id}=req.params;
+        const user = await userModel.findById({_id:id});
+        return res.status(200).send({ message: "User", user,success:true });
+    } catch (error) {
+        return res.status(500).send({ message: error.message,success:false });
+    }
+}
+
+export const deleteUser = async (req, res) => {
+    try {
+        const {id}=req.params;
+        const user = await userModel.findByIdAndDelete({_id:id});
+        return res.status(200).send({ message: "User deleted", user,success:true });
+    }
+    catch (error) {
+        return res.status(500).send({ message: error.message,success:false });
+    }
+}
+
+export const updateUser = async (req, res) => {
+    try {
+        const {id}=req.params;
+        const user = await userModel.findByIdAndUpdate({_id:id},req.body,{new:true});
+        return res.status(200).send({ message: "User updated successfully", user,success:true });
+    }
+    catch (error) {
+        return res.status(500).send({ message: error.message,success:false });
+    }
+}
