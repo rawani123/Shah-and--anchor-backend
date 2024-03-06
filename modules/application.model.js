@@ -13,6 +13,10 @@ const applicationSchema = new mongoose.Schema({
         type : String,
         required : true
     },
+    photo:{
+        type : String,
+        required : true
+    },
 },{timestamps:true});
 
 const applicationModel= mongoose.model("Application",applicationSchema);

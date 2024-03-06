@@ -15,7 +15,6 @@ const sponsorSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
     contact_email: {
       type: String,
       required: true,
