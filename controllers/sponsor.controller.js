@@ -2,14 +2,28 @@ import sponsorModel from "../modules/sponsorSchema.js";
 
 export const sponsorController = async(req, res) =>{
     try{
-        const {industry,description,contact_email,contact_phone,budget,location,sponsor_id,video,photo}=req.body;
+        const {industry,description,contact_email,contact_phone,budget,location,sponsor_id,photo}=req.body;
         if (!industry || !description || !contact_email || !contact_phone || !budget || !location || !sponsor_id){
             return res.status(400).send({message:"Please fill in all fields"});
         }
         const sponsorExists = await sponsorModel({sponsor_id});
         if(!sponsorExists){
             return res.status(400).send({message:"Sponsor already exists"});
+            
         }
+
+        const video=req.file?.path;
+
+        if(!video){
+            throw new ApiError(400,"Video Not uploded")
+        }
+
+        const uploadedVideo= await uploudVideoOnCloudinary(video);
+
+        if(!uploadedVideo){
+            throw new ApiError(400,"Video Not uploaded")
+        }
+
         const sponsor =  await sponsorModel.create({
                 industry,
                 description,
@@ -17,7 +31,7 @@ export const sponsorController = async(req, res) =>{
                 contact_phone,
                 budget,
                 location,
-                video,
+                video:uploadedVideo?.url,
                 photo,
                 sponsor_id
         });

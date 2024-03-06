@@ -10,10 +10,10 @@ router.post("/login", loginController)
 
 router.post('/getAllUser',authentication,getAllUser)
 
-router.post('/getUser:id',authentication,getUser)
+router.post('/getUser/:id',authentication,getUser)
 
-router.post('/deleteUser:id',authentication,updateUser)
+router.post('/deleteUser/:id',authentication,deleteUser)
 
-router.post('/updateUser:id',authentication,deleteUser)
+router.post('/updateUser/:id',authentication,updateUser)
 
 export default router;

@@ -12,6 +12,8 @@ const app = express();
 
 app.use(express.json());
 
+app.use(express.static("public"));
+
 app.use("/api/users",userRoutes)
 app.use('/api/sponsor',sponsorRoutes)
 
