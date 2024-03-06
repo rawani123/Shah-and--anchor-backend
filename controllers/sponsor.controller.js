@@ -27,3 +27,13 @@ export const sponsorController = async(req, res) =>{
         }
     };
 
+export const getAllSponsors = async(req,res)  => {
+    try {
+        const sponsor = await sponsorModel.find({});
+        return res.status(200).send({ message: "All sponsors", sponsor,success:true });
+    } catch (error) {
+        return res.status(500).send({ message: error.message,success:false });
+    }
+}
+
+
