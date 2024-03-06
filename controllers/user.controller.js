@@ -51,3 +51,12 @@ export const loginController = async (req, res) => {
     return res.status(500).send({ message: error.message,success:false });
   }
 };
+
+export const getAllUser = async (req, res) => {
+    try {
+        const users = await userModel.find({});
+        return res.status(200).send({ message: "All users", users,success:true });
+    } catch (error) {
+        return res.status(500).send({ message: error.message,success:false });
+    }
+}

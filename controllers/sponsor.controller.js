@@ -1,4 +1,4 @@
-import sponsorModel from "../modules/sponsorSchema";
+import sponsorModel from "../modules/sponsorSchema.js";
 
 export const sponsorController = async(req, res) =>{
     try{
@@ -19,8 +19,9 @@ export const sponsorController = async(req, res) =>{
                 location,
                 video,
                 photo,
+                sponsor_id
         });
-        return res.status(201).send({message:"Sponsor created successfully",user});
+        return res.status(201).send({message:"Sponsor created successfully",sponsor});
         }catch (error) {
             return res.status(500).send({ message: error.message });
         }
