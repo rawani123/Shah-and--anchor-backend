@@ -5,11 +5,11 @@ export const registerController = async (req, res) => {
   try {
     const { userName, email, password } = req.body;
     if (!userName || !email || !password) {
-      return res.status(400).send({ message: "Please fill in all fields" });
+      return res.status(400).send({ message: "Please fill in all fields",success:false });
     }
     const userExists = await userModel({ email });
     if (!userExists) {
-      return res.status(400).send({ message: "User already exists" });
+      return res.status(400).send({ message: "User already exists",success:false });
     }
     const hashedPassword = await bcrypt.hash(password, 12);
 
@@ -19,9 +19,9 @@ export const registerController = async (req, res) => {
       password: hashedPassword,
     });
 
-    return res.status(201).send({ message: "User created successfully", user });
+    return res.status(201).send({ message: "User created successfully", user,success:true });
   } catch (error) {
-    return res.status(500).send({ message: error.message });
+    return res.status(500).send({ message: error.message,success:false });
   }
 };
 
@@ -29,25 +29,25 @@ export const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      return res.status(400).send({ message: "Please fill in all fields" });
+      return res.status(400).send({ message: "Please fill in all fields",success:false });
     }
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.status(400).send({ message: "User does not exist" });
+      return res.status(400).send({ message: "User does not exist",success:false });
     }
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
-      return res.status(400).send({ message: "Invalid credentials" });
+      return res.status(400).send({ message: "Invalid credentials",success:false });
     }
     user.password = undefined;
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ user: user }, process.env.JWT_SECRET, {
       expiresIn: "30d",
     });
     return res
       .status(200)
-      .send({ message: "User logged in successfully", user, token });
+      .send({ message: "User logged in successfully", user, token ,success:true});
   } catch (error) {
-    return res.status(500).send({ message: error.message });
+    return res.status(500).send({ message: error.message,success:false });
   }
 };
