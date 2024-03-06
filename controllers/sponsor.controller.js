@@ -37,3 +37,10 @@ export const getAllSponsors = async(req,res)  => {
 }
 
 
+export const getSponsor  = async(req,res)=>{
+    try{
+
+    }catch{
+
+    }
+}
