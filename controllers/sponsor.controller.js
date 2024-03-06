@@ -50,4 +50,32 @@ export const getAllSponsors = async(req,res)  => {
     }
 }
 
-
+export const updateSponsor = async (req, res) => {
+    try {
+        const {id}=req.params;
+        const sponsor = await sponsorModel.findByIdAndUpdate({_id:id},req.body,{new:true});
+        return res.status(200).send({ message: "Sponsor updated successfully", sponsor,success:true });
+    }
+    catch (error) {
+        return res.status(500).send({ message: error.message,success:false });
+    }
+}
+export const getSponsor = async (req, res) => {
+    try {
+        const {id}=req.params;
+        const sponsor = await sponsorModel.findById({_id:id});
+        return res.status(200).send({ message: "sponsor", sponsor,success:true });
+    } catch (error) {
+        return res.status(500).send({ message: error.message,success:false });
+    }
+}
+export const deleteSponsor = async (req, res) => {
+    try {
+        const {id}=req.params;
+        const sponsor = await sponsorModel.findByIdAndDelete({_id:id});
+        return res.status(200).send({ message: "Sponsor deleted", sponsor,success:true });
+    }
+    catch (error) {
+        return res.status(500).send({ message: error.message,success:false });
+    }
+}
