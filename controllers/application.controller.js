@@ -26,7 +26,7 @@ export const applicationController = async (req, res) => {
 
     const sponsor = await sponsorModel.findById({ _id: sponsorId });
     console.log(sponsor)
-    const id= sponsor.sponsor_id;
+    const id = sponsor.sponsor_id;
     const sponsorUser = await userModel.findById({ _id: id });
     sponsorUser.notifications.push({
       type: "application",
@@ -42,9 +42,9 @@ export const applicationController = async (req, res) => {
       message: `You have a been applied for sponsorship`,
     });
     user.applications.push({
-        applicationId:newApplication._id,
-        sponsorId,
-        message:`Applied for sponsorShip from ${sponsorUser.userName} for ${reason} at ${location} with ${money} `
+      applicationId: newApplication._id,
+      sponsorId,
+      message: `Applied for sponsorShip from ${sponsorUser.userName} for ${reason} at ${location} with ${money} `
     });
     await user.save();
 
@@ -58,7 +58,7 @@ export const applicationController = async (req, res) => {
 export const approveApplication = async (req, res) => {
   try {
     const { userId } = req.body;
-    
+
 
   } catch (error) {
     console.error(error);
@@ -67,13 +67,17 @@ export const approveApplication = async (req, res) => {
 };
 
 export const getAllAplllications = async (req, res) => {
-    try {
-        const {sponsorId}=req.body;
-        const applications = await applicationModel.find({sponsorId});
-        const user = await userModel.findById({_id:applications.userId})
-        return res.status(200).send({ message: "All applications",success:true, applications,user });
-    }
-    catch (error) {
-        return res.status(500).send({ message: error.message });
-    }
+  try {
+    const { sponsorId } = req.body;
+    // console.log(sponsorId); 
+    const applications = await applicationModel.find({ userId: sponsorId });
+    console.log("application data",applications);
+    console.log(applications.userId)
+    const user = await userModel.findById({ _id: sponsorId })
+    console.log(user)
+    return res.status(200).send({ message: "All applications", success: true, applications,user });
+  }
+  catch (error) {
+    return res.status(500).send({ message: error.message });
+  }
 }
