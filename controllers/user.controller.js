@@ -107,3 +107,14 @@ export const updateUser = async (req, res) => {
         return res.status(500).send({ message: error.message,success:false });
     }
 }
+
+export const getAllNotification=async(req,res)=>{
+  try{
+    const {id}=req.user;
+    const user=await userModel.findById({_id:id});
+    const notifications=user.notifications;
+    return res.status(200).send({message:"All notifications",notifications,success:true});
+  }catch(error){
+    return res.status(500).send({message:error.message,success:false});
+  }
+}
