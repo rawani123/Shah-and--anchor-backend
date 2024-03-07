@@ -22,8 +22,12 @@ export const applicationController = async (req, res) => {
     });
     await newApplication.save();
 
+
+
     const sponsor = await sponsorModel.findById({ _id: sponsorId });
-    const sponsorUser = await userModel.findById({ _id: sponsor.userId });
+    console.log(sponsor)
+    const id= sponsor.sponsor_id;
+    const sponsorUser = await userModel.findById({ _id: id });
     sponsorUser.notifications.push({
       type: "application",
       user: userId,
