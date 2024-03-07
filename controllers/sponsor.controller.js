@@ -107,9 +107,11 @@ export const getSponsor = async (req, res) => {
     const { id } = req.params;
     console.log(id)
 
-    const sponsor = await sponsorModel.find({sponsor_id:id})
-    const user = await userModel.findById({ _id:id}).select("-password");
-    return res.status(200).send({ message: "sponsor",user,sponsor, success: true });
+    const sponsor = await sponsorModel.findById({_id:id})
+    const ids =sponsor.sponsor_id
+    const user = await userModel.findById({ _id:ids}).select("-password");
+    console.log(user)
+    return res.status(200).send({ message: "sponsor",user,sponsor,success:true} );
   } catch (error) {
     return res.status(500).send({ message: error.message, success: false });
   }
