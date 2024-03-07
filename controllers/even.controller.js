@@ -1,7 +1,12 @@
+import eventModel from "../modules/event.model.js";
+import userModel from "../modules/user.model.js";
+
+
+
 export const createEvent = async(req, res) => {
     try{
-        const {userId,eventName,eventType,desc,reason,location,date} = req.body;
-        if(!userId || !eventName || !eventType || !desc || !reason || !location || !date){
+        const {userId,eventName,eventType,reason,location,date} = req.body;
+        if(!userId || !eventName || !eventType || !reason || !location || !date){
             return res.status(400).send({message:"Please fill in all fields"});
         }
 
@@ -9,7 +14,6 @@ export const createEvent = async(req, res) => {
             userId,
             eventName,
             eventType,
-            desc,
             reason,
             location,
             date
@@ -20,7 +24,6 @@ export const createEvent = async(req, res) => {
             id:newEvent._id,
             eventName,
             eventType,
-            desc,
             reason,
             location,
             date
