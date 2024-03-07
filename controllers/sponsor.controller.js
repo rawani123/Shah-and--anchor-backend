@@ -143,3 +143,5 @@ export const getSponsorsByIndustry = async (req, res) => {
     return res.status(500).send({ message: error.message, success: false });
   }
  }
+
+ 
