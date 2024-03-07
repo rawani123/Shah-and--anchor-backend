@@ -70,7 +70,8 @@ export const getAllAplllications = async (req, res) => {
     try {
         const {sponsorId}=req.body;
         const applications = await applicationModel.find({sponsorId});
-        return res.status(200).send({ message: "All applications",success:true, applications });
+        const user = await userModel.findById({_id:applications.userId})
+        return res.status(200).send({ message: "All applications",success:true, applications,user });
     }
     catch (error) {
         return res.status(500).send({ message: error.message });
