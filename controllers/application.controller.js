@@ -57,10 +57,22 @@ export const applicationController = async (req, res) => {
 
 export const approveApplication = async (req, res) => {
   try {
-    const {  } = req.body;
+    const { userId } = req.body;
+    
 
   } catch (error) {
     console.error(error);
     return res.status(500).send({ message: "Internal server error" });
   }
 };
+
+export const getAllAplllications = async (req, res) => {
+    try {
+        const {sponsorId}=req.body;
+        const applications = await applicationModel.find({sponsorId});
+        return res.status(200).send({ message: "All applications",success:true, applications });
+    }
+    catch (error) {
+        return res.status(500).send({ message: error.message });
+    }
+}
