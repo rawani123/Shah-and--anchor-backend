@@ -105,9 +105,10 @@ export const updateSponsor = async (req, res) => {
 export const getSponsor = async (req, res) => {
   try {
     const { id } = req.params;
-    const sponsor = await sponsorModel.findById({ _id: id });
-    const user = await userModel.findById({ _id: sponsor.sponsor_id }).select("-password");
-    return res.status(200).send({ message: "sponsor",user, sponsor, success: true });
+    console.log(id)
+
+    const user = await userModel.findById({ _id:id}).select("-password");
+    return res.status(200).send({ message: "sponsor",user, success: true });
   } catch (error) {
     return res.status(500).send({ message: error.message, success: false });
   }
@@ -135,7 +136,7 @@ export const getSponsorsByIndustry = async (req, res) => {
 };
 
 
- export const getAllUnSponsors =async()=>{
+ export const getAllUnSponsors =async(req,res)=>{
   try {
     const sponsor = await sponsorModel.find({status:"pending"});
     return res.status(200).send({ message: "All sponsors", sponsor, success: true });
