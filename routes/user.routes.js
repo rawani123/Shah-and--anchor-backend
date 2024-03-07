@@ -10,14 +10,14 @@ router.post("/register", registerController)
 
 router.post("/login", loginController)
 
-router.post('/getAllUser',authentication,admin,getAllUser)
+router.post('/getAllUser', authentication, getAllUser)
 
-router.post('/getUser',authentication,getUser)
+router.post('/getUser', authentication, getUser)
 
-router.post('/deleteUser/:id',authentication,admin,deleteUser)
+router.post('/deleteUser/:id', authentication, admin, deleteUser)
 
-router.post('/updateUser/:id',authentication,updateUser)
+router.post('/updateUser/:id', authentication, updateUser)
 
-router.post('/see-notifications',authentication,getAllNotification)
+router.post('/see-notifications', authentication, getAllNotification)
 
 export default router;
