@@ -118,3 +118,12 @@ export const getAllNotification=async(req,res)=>{
     return res.status(500).send({message:error.message,success:false});
   }
 }
+
+export const deleteNotification=async(req,res)=>{
+  try {
+    const {id}=req.user;
+    const user = await userModel.findByIdAndUpdate({_id:id},{notifications:[]},{new:true});
+  } catch (error) {
+    return res.status(500).send({message:error.message,success:false});
+  }
+}
